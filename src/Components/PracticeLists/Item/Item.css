@@ -1,0 +1,24 @@
+.item-wrapper {
+  background-color: #758091;
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 2px 2px 4px;
+}
+
+.item {
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.item-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.item-info {
+  font-size: 0.7rem;
+}
