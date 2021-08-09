@@ -1,0 +1,17 @@
+.practice-item-wrapper {
+  background-color: rgba(117, 128, 145, 0.6);
+  margin: 1rem 2rem;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: flex-start;
+  width: 60%;
+}
+
+.heart {
+  align-self: center;
+  margin: 0 0 0 0.7rem;
+}
+
+.item-title {
+  margin: 0 0.6rem;
+}
