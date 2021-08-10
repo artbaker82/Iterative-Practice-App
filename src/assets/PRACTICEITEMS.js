@@ -5,6 +5,7 @@ export const PRACTICEITEMS = [
     id: 1,
     liked: false,
     lastPracticed: "2/3/19",
+    selected: false,
   },
   {
     title: "Desafinado",
@@ -12,6 +13,7 @@ export const PRACTICEITEMS = [
     id: 2,
     liked: false,
     lastPracticed: "2/3/19",
+    selected: false,
   },
   {
     title: "Samba Em Preludio",
@@ -19,6 +21,7 @@ export const PRACTICEITEMS = [
     id: 3,
     liked: false,
     lastPracticed: "2/3/19",
+    selected: false,
   },
   {
     title: "Samba Em Preludio",
@@ -26,5 +29,6 @@ export const PRACTICEITEMS = [
     id: 4,
     liked: false,
     lastPracticed: "2/3/19",
+    selected: false,
   },
 ];

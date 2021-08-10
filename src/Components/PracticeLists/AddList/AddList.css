@@ -1,0 +1,12 @@
+.add-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-list-item-wrapper {
+  background-color: rgba(117, 128, 145, 0.6);
+  width: 60%;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+}

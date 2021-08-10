@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [practiceList, setPracticeList] = useState(PRACTICELISTS);
   const [practiceItems, setPracticeItems] = useState(PRACTICEITEMS);
+
   const [inputText, setInputText] = useState("");
   return (
     <Fragment>

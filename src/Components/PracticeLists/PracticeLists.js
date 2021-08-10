@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import Item from "./Item/Item";
 import "./PracticeLists.css";
-import AddList from "../AddList";
-const PracticeLists = ({ practiceList, setPracticeList, inputText, setInputText }) => {
+import AddList from "./AddList/AddList";
+
+const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practiceItems }) => {
   return (
     <Fragment>
       <div className="main-list-wrapper">
@@ -11,7 +12,7 @@ const PracticeLists = ({ practiceList, setPracticeList, inputText, setInputText 
           {practiceList.map((item) => {
             return <Item item={item} />;
           })}
-          <AddList />
+          <AddList practiceItems={practiceItems} />
         </div>
       </div>
     </Fragment>

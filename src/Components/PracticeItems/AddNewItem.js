@@ -29,6 +29,7 @@ const AddNewItem = ({ setPracticeItems, practiceItems }) => {
         id: Math.floor(Math.random() * 100),
         liked: false,
         lastPracticed: undefined,
+        selected: false,
       },
     ]);
     toggle();

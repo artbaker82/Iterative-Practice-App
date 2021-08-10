@@ -3,14 +3,7 @@ import PracticeLists from "../PracticeLists/PracticeLists";
 import PracticeItems from "../PracticeItems/PracticeItems";
 import "./DashBoard.css";
 import { Col, Row } from "reactstrap";
-const DashBoard = ({
-  practiceList,
-  setPracticeList,
-  inputText,
-  setInputText,
-  practiceItems,
-  setPracticeItems,
-}) => {
+const DashBoard = ({ practiceList, setPracticeList, practiceItems, setPracticeItems }) => {
   return (
     <Fragment>
       <div className="main-wrapper">
@@ -18,8 +11,8 @@ const DashBoard = ({
           <PracticeLists
             practiceList={practiceList}
             setPracticeList={setPracticeList}
-            inputText={inputText}
-            setInputText={setInputText}
+            practiceItems={practiceItems}
+            setPracticeItems={setPracticeItems}
           />
         </div>
         <Row>
