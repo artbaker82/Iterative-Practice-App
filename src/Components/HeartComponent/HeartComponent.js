@@ -7,10 +7,10 @@ const renderHeart = (item) => {
   prefix = item.liked ? "fas" : "far";
   return prefix;
 };
-const HeartComponent = ({ item, setPracticeItems }) => {
+const HeartComponent = ({ item }) => {
   return (
     <FontAwesomeIcon
-      onClick={() => setPracticeItems(item)}
+      // onClick={() => onHeartClick(item)}
       icon={[renderHeart(item), "heart"]}
       style={{ margin: "0 0 0 0.7rem", alignSelf: "center" }}
     ></FontAwesomeIcon>

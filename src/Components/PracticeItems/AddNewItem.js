@@ -14,27 +14,27 @@ import {
   FormText,
 } from "reactstrap";
 
-const AddNewItem = ({ setPracticeItems, practiceItems }) => {
+const AddNewItem = ({ handleNewItem }) => {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState("");
   const toggle = () => setModal(!modal);
 
-  const addNewHandler = (e) => {
-    e.preventDefault();
-    setPracticeItems([
-      ...practiceItems,
-      {
-        title: title,
-        created: undefined,
-        id: Math.floor(Math.random() * 100),
-        liked: false,
-        lastPracticed: undefined,
-        selected: false,
-        timer: 5,
-      },
-    ]);
-    toggle();
-  };
+  // const addNewHandler = (e) => {
+  //   e.preventDefault();
+  //   setPracticeItems([
+  //     ...practiceItems,
+  //     {
+  //       title: title,
+  //       created: undefined,
+  //       id: Math.floor(Math.random() * 100),
+  //       liked: false,
+  //       lastPracticed: undefined,
+  //       selected: false,
+  //       timer: 5,
+  //     },
+  //   ]);
+  //   toggle();
+  // };
 
   return (
     <Fragment>
@@ -49,7 +49,7 @@ const AddNewItem = ({ setPracticeItems, practiceItems }) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Add New Practice Item</ModalHeader>
         <ModalBody>
-          <Form onSubmit={addNewHandler}>
+          <Form onSubmit={(e) => handleNewItem(e, title)}>
             <FormGroup>
               <Label htmlFor="username">Title</Label>
               <Input
