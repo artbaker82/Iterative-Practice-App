@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Item from "./Item/Item";
 import "./PracticeLists.css";
 import AddList from "./AddList/AddList";
-import PracticeItems from "../PracticeItems/PracticeItems";
 
 const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practiceItems }) => {
   const handleNewList = (title, e) => {
@@ -14,6 +13,7 @@ const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practi
         items: [practiceItems.filter((item) => item.selected)],
         created: new Date().toISOString(),
         lastPracticed: "1 day ago",
+        id: Math.floor(Math.random() * 1000),
       },
     ]);
 
@@ -34,6 +34,7 @@ const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practi
           {practiceList.map((item) => {
             return <Item item={item} />;
           })}
+
           <AddList
             practiceItems={practiceItems}
             setPracticeItems={setPracticeItems}
