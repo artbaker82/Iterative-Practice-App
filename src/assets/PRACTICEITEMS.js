@@ -6,6 +6,7 @@ export const PRACTICEITEMS = [
     liked: false,
     lastPracticed: "2/3/19",
     selected: false,
+    timer: 5,
   },
   {
     title: "Desafinado",
@@ -14,6 +15,7 @@ export const PRACTICEITEMS = [
     liked: false,
     lastPracticed: "2/3/19",
     selected: false,
+    timer: 5,
   },
   {
     title: "Samba Em Preludio",
@@ -22,6 +24,7 @@ export const PRACTICEITEMS = [
     liked: false,
     lastPracticed: "2/3/19",
     selected: false,
+    timer: 5,
   },
   {
     title: "Samba Em Preludio",
@@ -30,5 +33,6 @@ export const PRACTICEITEMS = [
     liked: false,
     lastPracticed: "2/3/19",
     selected: false,
+    timer: 5,
   },
 ];

@@ -1,10 +1,25 @@
 import React, { useState, Fragment } from "react";
 import "./Item.css";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-const Item = ({ item }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+const Item = ({ item, handleTimer }) => {
   const [modal, setModal] = useState(false);
-
   const toggle = () => setModal(!modal);
+
+  const TimerSelector = (itemInList) => {
+    return (
+      <div className="timer-wrapper-main">
+        <FontAwesomeIcon
+          onClick={() => handleTimer(itemInList.item, item, "increase")} //passing in itemToChange, id of list, and action
+          icon={["fas", "sort-up"]}
+        ></FontAwesomeIcon>
+        <FontAwesomeIcon
+          onClick={() => handleTimer(itemInList.item, item, "decrease")}
+          icon={["fas", "sort-down"]}
+        ></FontAwesomeIcon>
+      </div>
+    );
+  };
 
   return (
     <Fragment>
@@ -15,8 +30,18 @@ const Item = ({ item }) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{item.name}</ModalHeader>
         <ModalBody>
-          <div>
-            <span>Pieces: {item.items.join(", ")}</span>
+          <div className="modal-list-main-wrapper">
+            <h3>Pieces</h3>
+            {item.items.map((item) => {
+              return (
+                <span key={item.id} className="modal-list-item-wrapper">
+                  {item.title}
+
+                  <TimerSelector item={item} />
+                  {item.timer}
+                </span>
+              );
+            })}
           </div>
         </ModalBody>
         <ModalFooter>

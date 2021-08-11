@@ -10,7 +10,7 @@ const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practi
       ...practiceList,
       {
         name: title,
-        items: [practiceItems.filter((item) => item.selected)],
+        items: practiceItems.filter((item) => item.selected),
         created: new Date().toISOString(),
         lastPracticed: "1 day ago",
         id: Math.floor(Math.random() * 1000),
@@ -26,13 +26,30 @@ const PracticeLists = ({ practiceList, setPracticeList, setPracticeItems, practi
       })
     );
   };
+
+  const handleTimer = (itemToChange, listToChange, action) => {
+    console.log(itemToChange, listToChange, action);
+    let newTime = itemToChange.timer + 1;
+    console.log(newTime);
+    setPracticeItems(
+      practiceItems.map((item) => {
+        if (item.id === itemToChange.id) {
+          return {
+            ...item,
+            timer: newTime,
+          };
+        }
+        return item;
+      })
+    );
+  };
   return (
     <Fragment>
       <div className="main-list-wrapper">
         <h2>Top Practice Lists</h2>
         <div className="list-container">
           {practiceList.map((item) => {
-            return <Item item={item} />;
+            return <Item item={item} handleTimer={handleTimer} />;
           })}
 
           <AddList

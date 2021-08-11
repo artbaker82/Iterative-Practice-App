@@ -30,6 +30,7 @@ const AddNewItem = ({ setPracticeItems, practiceItems }) => {
         liked: false,
         lastPracticed: undefined,
         selected: false,
+        timer: 5,
       },
     ]);
     toggle();
