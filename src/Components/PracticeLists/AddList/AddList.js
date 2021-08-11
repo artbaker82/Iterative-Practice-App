@@ -3,16 +3,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./AddList.css";
 
-import { Modal, Button, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {
+  Modal,
+  Button,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
 
-const AddList = ({ practiceItems, setPracticeItems }) => {
+const AddList = ({ practiceItems, handleNewList, setPracticeItems }) => {
   const [modal, setModal] = useState(false);
+  const [title, setTitle] = useState("");
   const toggle = () => {
     setModal(!modal);
   };
 
   const handleSelect = (selectedItem) => {
     console.log(selectedItem);
+    setPracticeItems(
+      practiceItems.map((item) => {
+        if (item.id === selectedItem.id) {
+          return {
+            ...item,
+            selected: !item.selected,
+          };
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -27,15 +49,38 @@ const AddList = ({ practiceItems, setPracticeItems }) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}></ModalHeader>
         <ModalBody>
-          <div className="add-list-container">
-            {practiceItems.map((item) => {
-              return (
-                <div onClick={() => handleSelect(item)} className="add-list-item-wrapper">
-                  <span>{item.title}</span>
-                </div>
-              );
-            })}
-          </div>
+          <Form onSubmit={(e) => handleNewList(title, e)}>
+            <FormGroup>
+              <Label for="listName">Name</Label>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="name your list"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              ></Input>
+            </FormGroup>
+            <div className="add-list-container">
+              <h3>Select Items</h3>
+              {practiceItems.map((item) => {
+                return (
+                  <div
+                    onClick={() => handleSelect(item)}
+                    className={`${
+                      item.selected ? "add-list-item-wrapper-selected" : "add-list-item-wrapper"
+                    }`}
+                  >
+                    <span>{item.title}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <Button type="submit" value="submit" color="primary">
+              Create New list
+            </Button>
+          </Form>
         </ModalBody>
 
         <ModalFooter>
