@@ -15,27 +15,31 @@ import {
   Input,
 } from "reactstrap";
 
-const AddList = ({ practiceItems, handleNewList, setPracticeItems }) => {
+const AddList = ({ practiceItems, handleNewList, handleSelect }) => {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState("");
+
   const toggle = () => {
     setModal(!modal);
   };
 
-  const handleSelect = (selectedItem) => {
-    console.log(selectedItem);
-    setPracticeItems(
-      practiceItems.map((item) => {
-        if (item.id === selectedItem.id) {
-          return {
-            ...item,
-            selected: !item.selected,
-          };
-        }
-        return item;
-      })
-    );
-  };
+  // const handleSelect = (selectedItem) => {
+  //   setSelected(
+  //     itemsToSelect.map((item) => {
+  //       if (item.id === selectedItem.id) {
+  //         return {
+  //           ...item,
+  //           selected: !item.selected,
+  //         };
+  //       }
+  //       return item;
+  //     })
+  //   );
+  // };
+
+  // const toAdd = () => {
+  //   return itemsToSelect.filter((item) => item.selected);
+  // };
 
   return (
     <Fragment>

@@ -3,7 +3,7 @@ import Item from "./Item/Item";
 import "./PracticeLists.css";
 import AddList from "./AddList/AddList";
 
-const PracticeLists = ({ practiceItems, practiceLists }) => {
+const PracticeLists = ({ handleNewList, practiceLists, practiceItems, handleSelect }) => {
   // const handleNewList = (title, e) => {
   //   e.preventDefault();
   //   setPracticeList([
@@ -43,6 +43,7 @@ const PracticeLists = ({ practiceItems, practiceLists }) => {
   //     })
   //   );
   // };
+
   return (
     <Fragment>
       <div className="main-list-wrapper">
@@ -52,11 +53,11 @@ const PracticeLists = ({ practiceItems, practiceLists }) => {
             return <Item item={item} />;
           })}
 
-          {/* <AddList
-            practiceItems={practiceItems}
-            setPracticeItems={setPracticeItems}
+          <AddList
             handleNewList={handleNewList}
-          /> */}
+            practiceItems={practiceItems}
+            handleSelect={handleSelect}
+          />
         </div>
       </div>
     </Fragment>

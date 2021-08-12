@@ -29,6 +29,47 @@ class App extends Component {
     });
   };
 
+  handleNewList = (title, e) => {
+    e.preventDefault();
+    console.log(title);
+    const newList = {
+      name: title,
+      items: this.state.practiceItems.filter((item) => item.selected),
+      //aritrary data for development, will be dynamic values
+      created: new Date().toISOString(),
+      lastPracticed: "2 days ago",
+      id: Math.floor(Math.random() * 100),
+    };
+
+    this.setState({
+      practiceLists: [...this.state.practiceLists, newList],
+      practiceItems: this.state.practiceItems.map((item) => {
+        return {
+          ...item,
+          selected: false,
+        };
+      }),
+    });
+  };
+
+  handleSelect = (toAdd) => {
+    const updatedItems = this.state.practiceItems.map((item) => {
+      if (item.id === toAdd.id) {
+        return {
+          ...item,
+          selected: !item.selected,
+        };
+      }
+      return item;
+    });
+
+    this.setState({
+      practiceItems: updatedItems,
+    });
+  };
+
+  handleHeartClick = () => {};
+
   render() {
     return (
       <Fragment>
@@ -45,7 +86,9 @@ class App extends Component {
                 // setPracticeItems={setPracticeItems}
                 practiceLists={this.state.practiceLists}
                 practiceItems={this.state.practiceItems}
+                handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
+                handleSelect={this.handleSelect}
               />
             )}
           />
