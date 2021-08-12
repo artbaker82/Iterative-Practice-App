@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import { PRACTICELISTS } from "./assets/PRACTICELISTS";
 import { PRACTICEITEMS } from "./assets/PRACTICEITEMS";
 import "./App.css";
+import { ListGroupItem } from "reactstrap";
 
 class App extends Component {
   state = {
@@ -68,6 +69,52 @@ class App extends Component {
     });
   };
 
+  handleTimer = (itemInList, action) => {
+    if (action === "increase") {
+      this.increaseTimer(itemInList);
+    } else {
+      this.decreaseTimer(itemInList);
+    }
+  };
+
+  increaseTimer = (item) => {
+    const itemToChange = item.selectedItem;
+    // let newTimer = itemToChange.timer;
+    // newTimer++;
+    const newListItem = { ...itemToChange, timer: itemToChange.timer++ };
+
+    const updatedPracticeItems = this.state.practiceItems.map((item) => {
+      if (item.id === itemToChange.id) {
+        item = newListItem;
+      }
+      return item;
+    });
+
+    this.setState({
+      practiceItems: updatedPracticeItems,
+    });
+  };
+  decreaseTimer = (item) => {
+    const itemToChange = item.selectedItem;
+    // let newTimer = itemToChange.timer;
+    // newTimer++;
+    const newListItem = {
+      ...itemToChange,
+      timer: itemToChange.timer > 1 ? itemToChange.timer-- : itemToChange.timer,
+    };
+
+    const updatedPracticeItems = this.state.practiceItems.map((item) => {
+      if (item.id === itemToChange.id) {
+        item = newListItem;
+      }
+      return item;
+    });
+
+    this.setState({
+      practiceItems: updatedPracticeItems,
+    });
+  };
+
   handleHeartClick = () => {};
 
   render() {
@@ -89,6 +136,7 @@ class App extends Component {
                 handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
                 handleSelect={this.handleSelect}
+                handleTimer={this.handleTimer}
               />
             )}
           />

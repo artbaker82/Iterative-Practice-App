@@ -9,6 +9,7 @@ const DashBoard = ({
   handleNewItem,
   handleNewList,
   handleSelect,
+  handleTimer,
 }) => {
   return (
     <Fragment>
@@ -23,6 +24,7 @@ const DashBoard = ({
             practiceLists={practiceLists}
             handleNewList={handleNewList}
             handleSelect={handleSelect}
+            handleTimer={handleTimer}
           />
         </div>
         <Row>

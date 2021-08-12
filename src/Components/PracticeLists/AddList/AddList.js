@@ -81,7 +81,7 @@ const AddList = ({ practiceItems, handleNewList, handleSelect }) => {
               })}
             </div>
 
-            <Button type="submit" value="submit" color="primary">
+            <Button onClick={toggle} type="submit" value="submit" color="primary">
               Create New list
             </Button>
           </Form>

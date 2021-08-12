@@ -3,7 +3,13 @@ import Item from "./Item/Item";
 import "./PracticeLists.css";
 import AddList from "./AddList/AddList";
 
-const PracticeLists = ({ handleNewList, practiceLists, practiceItems, handleSelect }) => {
+const PracticeLists = ({
+  handleNewList,
+  practiceLists,
+  practiceItems,
+  handleSelect,
+  handleTimer,
+}) => {
   // const handleNewList = (title, e) => {
   //   e.preventDefault();
   //   setPracticeList([
@@ -50,7 +56,7 @@ const PracticeLists = ({ handleNewList, practiceLists, practiceItems, handleSele
         <h2>Top Practice Lists</h2>
         <div className="list-container">
           {practiceLists.map((item) => {
-            return <Item item={item} />;
+            return <Item handleTimer={handleTimer} item={item} />;
           })}
 
           <AddList

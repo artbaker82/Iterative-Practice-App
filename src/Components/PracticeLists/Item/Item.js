@@ -6,15 +6,15 @@ const Item = ({ item, handleTimer }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const TimerSelector = (itemInList) => {
+  const TimerSelector = (selectedItem) => {
     return (
       <div className="timer-wrapper-main">
         <FontAwesomeIcon
-          onClick={() => handleTimer(itemInList.item, item, "increase")} //passing in itemToChange, id of list, and action
+          onClick={() => handleTimer(selectedItem, "increase")} //passing in itemToChange, id of list, and action
           icon={["fas", "sort-up"]}
         ></FontAwesomeIcon>
         <FontAwesomeIcon
-          onClick={() => handleTimer(itemInList.item, item, "decrease")}
+          onClick={() => handleTimer(selectedItem, "decrease")}
           icon={["fas", "sort-down"]}
         ></FontAwesomeIcon>
       </div>
@@ -37,8 +37,8 @@ const Item = ({ item, handleTimer }) => {
                 <span key={item.id} className="modal-list-item-wrapper">
                   {item.title}
 
-                  <TimerSelector item={item} />
-                  {item.timer}
+                  <TimerSelector selectedItem={item} />
+                  {`${item.timer} ${item.timer === 1 ? "minute" : "minutes"}`}
                 </span>
               );
             })}
