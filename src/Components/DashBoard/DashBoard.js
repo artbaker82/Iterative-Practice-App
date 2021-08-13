@@ -30,12 +30,7 @@ const DashBoard = ({
         <Row>
           <Col xs={6} lg={4} className="items-list-wrapper">
             <div>
-              Practice Items here
-              <PracticeItems
-                practiceItems={practiceItems}
-                handleNewItem={handleNewItem}
-                practiceItems={practiceItems}
-              />
+              <PracticeItems practiceItems={practiceItems} handleNewItem={handleNewItem} />
             </div>
           </Col>
         </Row>

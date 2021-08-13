@@ -17,22 +17,4 @@ export const PRACTICEITEMS = [
     selected: false,
     timer: 5,
   },
-  {
-    title: "Samba Em Preludio",
-    created: "8/3/20",
-    id: 3,
-    liked: false,
-    lastPracticed: "2/3/19",
-    selected: false,
-    timer: 5,
-  },
-  {
-    title: "Samba Em Preludio",
-    created: "8/3/20",
-    id: 4,
-    liked: false,
-    lastPracticed: "2/3/19",
-    selected: false,
-    timer: 5,
-  },
 ];

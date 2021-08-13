@@ -1,5 +1,7 @@
-import React, { useState, Fragment, Component } from "react";
+import React, { Fragment, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { addItem } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import { PRACTICELISTS } from "./assets/PRACTICELISTS";
@@ -118,6 +120,7 @@ class App extends Component {
   handleHeartClick = () => {};
 
   render() {
+    console.log(this.props.practiceItems);
     return (
       <Fragment>
         <Header />
@@ -147,34 +150,16 @@ class App extends Component {
   }
 }
 
-export default App;
-// function App() {
-//   const [practiceList, setPracticeList] = useState(PRACTICELISTS);
-//   const [practiceItems, setPracticeItems] = useState(PRACTICEITEMS);
+const mapStateToArray = (state) => {
+  const keys = Object.keys(state);
+  const arr = [];
+  for (let i = 0; i < keys.length; i++) {
+    arr.push(state[i]);
+  }
+  return arr;
+};
+const mapStateToProps = (state) => ({
+  practiceItems: mapStateToArray(state.practiceItems),
+});
 
-//   const [inputText, setInputText] = useState("");
-//   return (
-//     <Fragment>
-//       <Header />
-//       <Switch>
-//         <Route
-//           exact
-//           path="/"
-//           render={() => (
-//             <DashBoard
-//               practiceList={practiceList}
-//               setPracticeList={setPracticeList}
-//               practiceItems={practiceItems}
-//               setPracticeItems={setPracticeItems}
-//               inputText={inputText}
-//               setInputText={setInputText}
-//             />
-//           )}
-//         />
-//         <Redirect to="/" />
-//       </Switch>
-//     </Fragment>
-//   );
-// }
-
-// export default App;
+export default connect(mapStateToProps)(App);
