@@ -1,4 +1,4 @@
-export const PRACTICEITEMS = [
+export const PRACTICE_ITEMS = [
   {
     title: "Samba Em Preludio",
     created: "8/3/20",

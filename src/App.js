@@ -5,13 +5,13 @@ import { addItem } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import { PRACTICELISTS } from "./assets/PRACTICELISTS";
-import { PRACTICEITEMS } from "./assets/PRACTICEITEMS";
+import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
 import "./App.css";
 import { ListGroupItem } from "reactstrap";
 
 class App extends Component {
   state = {
-    practiceItems: PRACTICEITEMS,
+    //practiceItems: PRACTICE_ITEMS,
     practiceLists: PRACTICELISTS,
   };
 
@@ -27,9 +27,10 @@ class App extends Component {
       timer: 5,
     };
 
-    this.setState({
-      practiceItems: [...this.state.practiceItems, newPracticeItem],
-    });
+    // this.setState({
+    //   practiceItems: [...this.state.practiceItems, newPracticeItem],
+    // });
+    this.props.addItem(newPracticeItem);
   };
 
   handleNewList = (title, e) => {
@@ -120,7 +121,6 @@ class App extends Component {
   handleHeartClick = () => {};
 
   render() {
-    console.log(this.props.practiceItems);
     return (
       <Fragment>
         <Header />
@@ -135,7 +135,7 @@ class App extends Component {
                 // practiceItems={practiceItems}
                 // setPracticeItems={setPracticeItems}
                 practiceLists={this.state.practiceLists}
-                practiceItems={this.state.practiceItems}
+                practiceItems={this.props.practiceItems}
                 handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
                 handleSelect={this.handleSelect}
@@ -150,16 +150,20 @@ class App extends Component {
   }
 }
 
-const mapStateToArray = (state) => {
-  const keys = Object.keys(state);
-  const arr = [];
-  for (let i = 0; i < keys.length; i++) {
-    arr.push(state[i]);
-  }
-  return arr;
-};
+// const mapStateToArray = (state) => {
+//   const keys = Object.keys(state);
+//   const arr = [];
+//   for (let i = 0; i < keys.length; i++) {
+//     arr.push(state[i]);
+//   }
+//   return arr;
+// };
 const mapStateToProps = (state) => ({
-  practiceItems: mapStateToArray(state.practiceItems),
+  practiceItems: state.practiceItems.items,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (newPracticeItem) => dispatch(addItem(newPracticeItem)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

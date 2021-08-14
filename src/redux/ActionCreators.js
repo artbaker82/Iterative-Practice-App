@@ -1,6 +1,6 @@
 import { ActionTypes } from "./ActionTypes";
 
-export const addItem = (title) => ({
+export const addItem = (newPracticeItem) => ({
   type: ActionTypes.ADD_ITEM,
-  payLoad: title,
+  payLoad: newPracticeItem,
 });

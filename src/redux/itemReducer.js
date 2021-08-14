@@ -1,24 +1,19 @@
 import { ActionTypes } from "./ActionTypes";
-import { PRACTICEITEMS } from "../assets/PRACTICEITEMS";
+import { PRACTICE_ITEMS } from "../assets/PRACTICE_ITEMS";
 
-const initialState = PRACTICEITEMS;
+const initialState = {
+  items: PRACTICE_ITEMS,
+};
 
 const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_ITEM:
-      const newPracticeItem = {
-        title: action.title,
-        created: new Date().toISOString(),
-        id: Math.floor(Math.random() * 100),
-        liked: false,
-        lastPracticed: undefined,
-        selected: false,
-        timer: 5,
-      };
+      console.log(action.payLoad);
       return {
         ...state,
-        newPracticeItem,
+        items: state.items.concat(action.payLoad),
       };
+
     default:
       return {
         ...state,
