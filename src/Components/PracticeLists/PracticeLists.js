@@ -56,7 +56,7 @@ const PracticeLists = ({
         <h2>Top Practice Lists</h2>
         <div className="list-container">
           {practiceLists.map((item) => {
-            return <Item handleTimer={handleTimer} item={item} />;
+            return <Item key={item.id} handleTimer={handleTimer} item={item} />;
           })}
 
           <AddList

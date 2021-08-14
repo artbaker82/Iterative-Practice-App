@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { addItem } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
+import SessionView from "./Components/SessionView/SessionView";
 import { PRACTICELISTS } from "./assets/PRACTICELISTS";
 import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
 import "./App.css";
-import { ListGroupItem } from "reactstrap";
 
 class App extends Component {
   state = {
@@ -143,6 +143,8 @@ class App extends Component {
               />
             )}
           />
+
+          <Route path="/sessionView" component={SessionView} />
           <Redirect to="/" />
         </Switch>
       </Fragment>

@@ -2,6 +2,7 @@ import React, { useState, Fragment } from "react";
 import "./Item.css";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 const Item = ({ item, handleTimer }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -45,9 +46,18 @@ const Item = ({ item, handleTimer }) => {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Do Something
-          </Button>{" "}
+          <Link
+            to={{
+              pathname: "/sessionView",
+              state: { list: item },
+            }}
+          >
+            Start
+            {/* <Button color="primary" onClick={toggle}>
+              Start Session
+            </Button> */}
+          </Link>
+
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>
