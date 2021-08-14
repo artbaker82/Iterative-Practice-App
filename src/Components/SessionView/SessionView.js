@@ -7,8 +7,7 @@ const SessionView = () => {
 
   return (
     <div>
-      {" "}
-      In practice List:{" "}
+      In practice List:
       {list.items.map((item) => {
         return (
           <p>
