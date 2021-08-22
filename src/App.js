@@ -11,7 +11,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    //practiceItems: PRACTICE_ITEMS,
+    practiceItems: PRACTICE_ITEMS,
     practiceLists: PRACTICELISTS,
   };
 
@@ -135,7 +135,7 @@ class App extends Component {
                 // practiceItems={practiceItems}
                 // setPracticeItems={setPracticeItems}
                 practiceLists={this.state.practiceLists}
-                practiceItems={this.props.practiceItems}
+                practiceItems={this.state.practiceItems}
                 handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
                 handleSelect={this.handleSelect}
