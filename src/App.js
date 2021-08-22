@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem } from "./redux/ActionCreators";
+import { addItem, selectItem } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
@@ -59,7 +59,7 @@ class App extends Component {
   };
 
   handleSelect = (toAdd) => {
-    const updatedItems = this.state.practiceItems.map((item) => {
+    const updatedItems = this.props.practiceItems.map((item) => {
       if (item.id === toAdd.id) {
         return {
           ...item,
@@ -69,9 +69,11 @@ class App extends Component {
       return item;
     });
 
-    this.setState({
-      practiceItems: updatedItems,
-    });
+    // this.setState({
+    //   practiceItems: updatedItems,
+    // });
+
+    this.props.selectItem(updatedItems);
   };
 
   handleTimer = (itemInList, action) => {
@@ -168,6 +170,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (newPracticeItem) => dispatch(addItem(newPracticeItem)),
+  selectItem: (updatedItems) => dispatch(selectItem(updatedItems)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

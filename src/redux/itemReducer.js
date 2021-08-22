@@ -14,6 +14,14 @@ const itemReducer = (state = initialState, action) => {
         items: state.items.concat([action.payLoad]),
       };
 
+    case ActionTypes.SELECT_ITEM:
+      console.log(action.payload);
+      console.log(state.items);
+      return {
+        ...state,
+        items: action.payload,
+      };
+
     default:
       return {
         ...state,
