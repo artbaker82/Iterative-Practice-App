@@ -11,7 +11,7 @@ const itemReducer = (state = initialState, action) => {
       console.log(action.payLoad);
       return {
         ...state,
-        items: state.items.concat(action.payLoad),
+        items: state.items.concat([action.payLoad]),
       };
 
     default:

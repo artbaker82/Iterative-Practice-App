@@ -6,17 +6,19 @@ import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
 import { PRACTICELISTS } from "./assets/PRACTICELISTS";
-import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
+//import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
 import "./App.css";
 
 class App extends Component {
   state = {
-    practiceItems: PRACTICE_ITEMS,
+    //this is coming from redux now
+    //practiceItems: PRACTICE_ITEMS,
     practiceLists: PRACTICELISTS,
   };
 
-  handleNewItem = (e, title) => {
+  handleNewItem = (title, e) => {
     e.preventDefault();
+    console.log("clicked");
     const newPracticeItem = {
       title: title,
       created: new Date().toISOString(),
@@ -135,7 +137,7 @@ class App extends Component {
                 // practiceItems={practiceItems}
                 // setPracticeItems={setPracticeItems}
                 practiceLists={this.state.practiceLists}
-                practiceItems={this.state.practiceItems}
+                practiceItems={this.props.practiceItems}
                 handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
                 handleSelect={this.handleSelect}

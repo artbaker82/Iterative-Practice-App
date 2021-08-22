@@ -3,6 +3,7 @@ import PracticeLists from "../PracticeLists/PracticeLists";
 import PracticeItems from "../PracticeItems/PracticeItems";
 import "./DashBoard.css";
 import { Col, Row } from "reactstrap";
+
 const DashBoard = ({
   practiceItems,
   practiceLists,
