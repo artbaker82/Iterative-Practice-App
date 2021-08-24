@@ -1,7 +1,14 @@
 import React, { Fragment, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem, selectItem, addList, resetSeleted } from "./redux/ActionCreators";
+import {
+  addItem,
+  selectItem,
+  addList,
+  resetSeleted,
+  increaseTimer,
+  decreaseTimer,
+} from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
@@ -101,16 +108,14 @@ class App extends Component {
     // newTimer++;
     const newListItem = { ...itemToChange, timer: itemToChange.timer++ };
 
-    const updatedPracticeItems = this.state.practiceItems.map((item) => {
+    const updatedPracticeItems = this.props.practiceItems.map((item) => {
       if (item.id === itemToChange.id) {
         item = newListItem;
       }
       return item;
     });
 
-    this.setState({
-      practiceItems: updatedPracticeItems,
-    });
+    this.props.increaseTimer(updatedPracticeItems);
   };
   decreaseTimer = (item) => {
     const itemToChange = item.selectedItem;
@@ -121,16 +126,14 @@ class App extends Component {
       timer: itemToChange.timer > 1 ? itemToChange.timer-- : itemToChange.timer,
     };
 
-    const updatedPracticeItems = this.state.practiceItems.map((item) => {
+    const updatedPracticeItems = this.props.practiceItems.map((item) => {
       if (item.id === itemToChange.id) {
         item = newListItem;
       }
       return item;
     });
 
-    this.setState({
-      practiceItems: updatedPracticeItems,
-    });
+    this.props.decreaseTimer(updatedPracticeItems);
   };
 
   handleHeartClick = () => {};
@@ -177,6 +180,8 @@ const mapDispatchToProps = (dispatch) => ({
   selectItem: (updatedItems) => dispatch(selectItem(updatedItems)),
   addList: (newList) => dispatch(addList(newList)),
   resetSeleted: (resetItems) => dispatch(resetSeleted(resetItems)),
+  increaseTimer: (updatedItems) => dispatch(increaseTimer(updatedItems)),
+  decreaseTimer: (updatedItems) => dispatch(decreaseTimer(updatedItems)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

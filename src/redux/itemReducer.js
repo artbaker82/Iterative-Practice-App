@@ -26,6 +26,18 @@ const itemReducer = (state = initialState, action) => {
         items: action.payload,
       };
 
+    case ActionTypes.INCREASE_TIMER:
+      return {
+        ...state,
+        items: action.payload,
+      };
+
+    case ActionTypes.DECREASE_TIMER:
+      return {
+        ...state,
+        items: action.payload,
+      };
+
     default:
       return {
         ...state,

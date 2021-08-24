@@ -19,3 +19,13 @@ export const resetSeleted = (resetItems) => ({
   type: ActionTypes.RESET_SELECTED,
   payload: resetItems,
 });
+
+export const increaseTimer = (updatedItems) => ({
+  type: ActionTypes.INCREASE_TIMER,
+  payload: updatedItems,
+});
+
+export const decreaseTimer = (updatedItems) => ({
+  type: ActionTypes.DECREASE_TIMER,
+  payload: updatedItems,
+});
