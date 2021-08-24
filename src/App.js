@@ -1,11 +1,11 @@
 import React, { Fragment, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem, selectItem } from "./redux/ActionCreators";
+import { addItem, selectItem, addList } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
-import { PRACTICELISTS } from "./assets/PRACTICELISTS";
+import { PRACTICELISTS } from "./assets/PRACTICE_LISTS";
 //import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
 import "./App.css";
 
@@ -13,7 +13,7 @@ class App extends Component {
   state = {
     //this is coming from redux now
     //practiceItems: PRACTICE_ITEMS,
-    practiceLists: PRACTICELISTS,
+    //practiceLists: PRACTICELISTS,
   };
 
   handleNewItem = (title, e) => {
@@ -38,24 +38,36 @@ class App extends Component {
   handleNewList = (title, e) => {
     e.preventDefault();
     console.log(title);
+    //create new list item
     const newList = {
       name: title,
-      items: this.state.practiceItems.filter((item) => item.selected),
+      items: this.props.practiceItems.filter((item) => item.selected),
       //aritrary data for development, will be dynamic values
       created: new Date().toISOString(),
       lastPracticed: "2 days ago",
       id: Math.floor(Math.random() * 100),
     };
 
-    this.setState({
-      practiceLists: [...this.state.practiceLists, newList],
-      practiceItems: this.state.practiceItems.map((item) => {
-        return {
-          ...item,
-          selected: false,
-        };
-      }),
+    //reset selected property on item
+    const resetItems = this.props.practiceItems.map((item) => {
+      return {
+        ...item,
+        selected: false,
+      };
     });
+
+    this.props.addList(newList);
+    //create new action creator to reset list
+
+    // this.setState({
+    //   practiceLists: [...this.state.practiceLists, newList],
+    //   practiceItems: this.state.practiceItems.map((item) => {
+    //     return {
+    //       ...item,
+    //       selected: false,
+    //     };
+    //   }),
+    // });
   };
 
   handleSelect = (toAdd) => {
@@ -138,7 +150,7 @@ class App extends Component {
                 // setPracticeList={setPracticeList}
                 // practiceItems={practiceItems}
                 // setPracticeItems={setPracticeItems}
-                practiceLists={this.state.practiceLists}
+                practiceLists={this.props.practiceLists}
                 practiceItems={this.props.practiceItems}
                 handleNewList={this.handleNewList}
                 handleNewItem={this.handleNewItem}
@@ -156,21 +168,15 @@ class App extends Component {
   }
 }
 
-// const mapStateToArray = (state) => {
-//   const keys = Object.keys(state);
-//   const arr = [];
-//   for (let i = 0; i < keys.length; i++) {
-//     arr.push(state[i]);
-//   }
-//   return arr;
-// };
 const mapStateToProps = (state) => ({
   practiceItems: state.practiceItems.items,
+  practiceLists: state.practiceLists.lists,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (newPracticeItem) => dispatch(addItem(newPracticeItem)),
   selectItem: (updatedItems) => dispatch(selectItem(updatedItems)),
+  addList: (newList) => dispatch(addList(newList)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

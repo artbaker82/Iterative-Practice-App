@@ -1,4 +1,4 @@
-export const PRACTICELISTS = [
+export const PRACTICE_LISTS = [
   {
     name: "Samba Tunes",
     items: [
