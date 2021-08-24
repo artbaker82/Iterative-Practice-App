@@ -14,3 +14,8 @@ export const addList = (newList) => ({
   type: ActionTypes.ADD_NEW_LIST,
   payload: newList,
 });
+
+export const resetSeleted = (resetItems) => ({
+  type: ActionTypes.RESET_SELECTED,
+  payload: resetItems,
+});

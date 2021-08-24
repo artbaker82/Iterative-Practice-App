@@ -1,12 +1,11 @@
 import React, { Fragment, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem, selectItem, addList } from "./redux/ActionCreators";
+import { addItem, selectItem, addList, resetSeleted } from "./redux/ActionCreators";
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
-import { PRACTICELISTS } from "./assets/PRACTICE_LISTS";
-//import { PRACTICE_ITEMS } from "./assets/PRACTICE_ITEMS";
+
 import "./App.css";
 
 class App extends Component {
@@ -37,7 +36,7 @@ class App extends Component {
 
   handleNewList = (title, e) => {
     e.preventDefault();
-    console.log(title);
+
     //create new list item
     const newList = {
       name: title,
@@ -57,7 +56,7 @@ class App extends Component {
     });
 
     this.props.addList(newList);
-    //create new action creator to reset list
+    this.props.resetSeleted(resetItems);
 
     // this.setState({
     //   practiceLists: [...this.state.practiceLists, newList],
@@ -177,6 +176,7 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: (newPracticeItem) => dispatch(addItem(newPracticeItem)),
   selectItem: (updatedItems) => dispatch(selectItem(updatedItems)),
   addList: (newList) => dispatch(addList(newList)),
+  resetSeleted: (resetItems) => dispatch(resetSeleted(resetItems)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
