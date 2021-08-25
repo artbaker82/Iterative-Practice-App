@@ -1,0 +1,4 @@
+.sessionViewWrapper {
+  display: flex;
+  flex-direction: column;
+}

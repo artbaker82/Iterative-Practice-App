@@ -1,0 +1,29 @@
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 2rem 15rem;
+
+  color: black;
+}
+
+.timeDisplay {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(196, 196, 196, 0.2);
+  padding: 2rem;
+  margin: 2rem 15rem;
+  font-size: 4.4rem;
+  border-radius: 15px;
+}
+
+.startButton {
+  width: 25%;
+  align-self: center;
+  font-size: 2rem;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  background-color: rgb(42, 157, 143);
+}
