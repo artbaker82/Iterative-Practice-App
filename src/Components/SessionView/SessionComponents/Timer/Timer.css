@@ -27,3 +27,13 @@
   color: white;
   background-color: rgb(42, 157, 143);
 }
+
+.stopButton {
+  width: 25%;
+  align-self: center;
+  font-size: 2rem;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  background-color: rgb(180, 52, 52);
+}
