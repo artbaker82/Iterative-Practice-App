@@ -33,6 +33,7 @@ class App extends Component {
       lastPracticed: undefined,
       selected: false,
       timer: 5,
+      current: false,
     };
 
     // this.setState({

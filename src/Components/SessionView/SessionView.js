@@ -7,6 +7,7 @@ import "./SessionView.css";
 const SessionView = () => {
   const location = useLocation();
   const { list } = location.state;
+
   const [itemsToPractice, setItemsToPractice] = useState(list);
 
   //create new local state or add new properties to existing state?
