@@ -17,57 +17,29 @@ const formatTime = (totalSeconds) => {
 const Timer = ({ queue }) => {
   const [timer, setTimer] = useState(2); //convert time to seconds
   const [isRunning, setIsRunning] = useState(false);
-  const [stateQueue, setStateQueue] = useState(queue);
-  console.log(stateQueue);
-  //set current to first element on  first load
+  //const [stateQueue, setStateQueue] = useState(queue);
+  //set initial current to first item in list
+  const [current, setCurrent] = useState(queue[0]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  console.log(currentIdx, current, timer);
   useEffect(() => {
-    const firstEl = stateQueue[0];
-
-    firstEl.current = true;
-    const updateCurrent = stateQueue.map((item) => {
-      if (item.id === firstEl.id) {
-        return firstEl;
-      }
-      return item;
-    });
-    console.log(updateCurrent);
-
-    //setStateQueue([...stateQueue, firstEl]);
-  }, []);
-
-  useEffect(() => {
-    //check if timer is at zero, if so, change current reset isrunning
+    //check if timer has finished, set new current, reset timer
     if (timer <= 0) {
-      //get current item
-      const prevItem = stateQueue.filter((item) => item.current)[0];
-      const currentIdx = stateQueue.indexOf(prevItem);
-      const updatedItem = { ...prevItem, current: false };
-      console.log("previous current", updatedItem);
-      const newCurrent = stateQueue[currentIdx + 1];
-      console.log("new Current", newCurrent);
-      //get index of current item
+      console.log("prev current", currentIdx, current, timer);
+      //set new idx
+      setCurrentIdx(currentIdx + 1);
+      //set new current
+      setCurrent(queue[currentIdx + 1]);
 
-      //set current index to false
-      // const updatedCurrent = stateQueue.map((item) => {
-
-      //   if (item.id === current.id) {
-      //     return {
-      //       ...item,
-      //       current: !item.current,
-      //     };
-      //   }
-      //   return item;
-      // });
-      // const updatedCurrent =
-      // console.log("updated current", updatedCurrent);
-      // setStateQueue(updatedCurrent);
-      //console.log(stateQueue);
-
-      //setStateQueue([...stateQueue, (stateQueue[currentIdx + 1].current = true)]);
       setIsRunning(false);
-      //setTimer(current.timer * 60);
     }
   }, [timer]);
+
+  useEffect(() => {
+    console.log("current changed to", current);
+    setTimer(current.timer * 60);
+  }, [current]);
 
   useEffect(() => {
     if (isRunning) {
