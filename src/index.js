@@ -9,6 +9,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { faHeart, faPlus, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 library.add(far, faHeart, faPlus, faSortUp, faSortDown);
 
 ReactDom.render(

@@ -8,6 +8,10 @@ import "./Timer.css";
 const formatTime = (totalSeconds) => {
   let minutes = Math.floor(totalSeconds / 60);
   let seconds = Math.floor(totalSeconds % 60);
+  console.log(minutes, seconds);
+  //change to string with leading and trailing zeros
+  minutes = minutes < 1 ? "" : minutes;
+  seconds = seconds === 0 ? "00" : seconds;
   return {
     minutes,
     seconds,
@@ -21,8 +25,9 @@ const Timer = ({ queue }) => {
   //set initial current to first item in list
   const [current, setCurrent] = useState(queue[0]);
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [sessionFinished, setSessionFinished] = useState(false);
 
-  console.log(currentIdx, current, timer);
+  console.log(currentIdx, current, timer, sessionFinished);
   useEffect(() => {
     //check if timer has finished, set new current, reset timer
     if (timer <= 0) {
@@ -38,7 +43,13 @@ const Timer = ({ queue }) => {
 
   useEffect(() => {
     console.log("current changed to", current);
-    setTimer(current.timer * 60);
+    //check if there are no more items
+    if (currentIdx >= queue.length) {
+      setSessionFinished(true);
+      setTimer("");
+    } else {
+      setTimer(current.timer * 60);
+    }
   }, [current]);
 
   useEffect(() => {
@@ -53,12 +64,19 @@ const Timer = ({ queue }) => {
 
   return (
     <Fragment>
-      <div className="timeDisplay">{`${formatTime(timer).minutes}:${
-        formatTime(timer).seconds
-      }`}</div>
+      <div className="timeDisplay">
+        <div className="displayCurrent">
+          {current ? `Currently Practicing: ${current.title}` : "Session Finished"}
+        </div>
+        {/* display only seconds if minutes equals zero */}
+        {formatTime(timer).minutes > 0
+          ? `${formatTime(timer).minutes}:${formatTime(timer).seconds}`
+          : `${formatTime(timer).seconds}`}
+      </div>
 
       {!isRunning ? (
         <button
+          disabled={sessionFinished ? true : false}
           onClick={() => {
             setIsRunning(true);
           }}
@@ -76,6 +94,7 @@ const Timer = ({ queue }) => {
           Stop Timer
         </button>
       )}
+      {sessionFinished ? <button className="backToDash">Back To Dashboard</button> : <Fragment />}
     </Fragment>
   );
 };

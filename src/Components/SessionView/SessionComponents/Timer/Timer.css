@@ -10,12 +10,18 @@
 
 .timeDisplay {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: rgba(196, 196, 196, 0.2);
   padding: 2rem;
   margin: 2rem 15rem;
   font-size: 4.4rem;
   border-radius: 15px;
+}
+
+.displayCurrent {
+  font-size: 1rem;
 }
 
 .startButton {
@@ -28,6 +34,10 @@
   background-color: rgb(42, 157, 143);
 }
 
+.startButton:disabled {
+  display: none;
+}
+
 .stopButton {
   width: 25%;
   align-self: center;
@@ -36,4 +46,14 @@
   border: none;
   color: white;
   background-color: rgb(180, 52, 52);
+}
+
+.backToDash {
+  width: 25%;
+  align-self: center;
+  font-size: 2rem;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  background-color: rgb(42, 157, 143);
 }

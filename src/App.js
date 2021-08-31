@@ -12,6 +12,7 @@ import {
 import DashBoard from "./Components/DashBoard/DashBoard";
 import Header from "./Components/Header/Header";
 import SessionView from "./Components/SessionView/SessionView";
+import { v4 as uuidv4 } from "uuid";
 
 import "./App.css";
 
@@ -28,7 +29,7 @@ class App extends Component {
     const newPracticeItem = {
       title: title,
       created: new Date().toISOString(),
-      id: Math.floor(Math.random() * 100),
+      id: uuidv4(), //Math.floor(Math.random() * 100),
       liked: false,
       lastPracticed: undefined,
       selected: false,
@@ -52,7 +53,7 @@ class App extends Component {
       //aritrary data for development, will be dynamic values
       created: new Date().toISOString(),
       lastPracticed: "2 days ago",
-      id: Math.floor(Math.random() * 100),
+      id: uuidv4(),
     };
 
     //reset selected property on item
