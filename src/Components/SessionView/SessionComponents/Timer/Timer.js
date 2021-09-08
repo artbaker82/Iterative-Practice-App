@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import Metronome from "../../../Metronome/Metronome";
 import "./Timer.css";
 
 //when timer reaches zero, go to next item, when timer is zero and queue is empty,
@@ -26,6 +27,7 @@ const Timer = ({ queue }) => {
   const [current, setCurrent] = useState(queue[0]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [sessionFinished, setSessionFinished] = useState(false);
+  const [showMetronome, setShowMetronome] = useState(false);
 
   console.log(currentIdx, current, timer, sessionFinished);
   useEffect(() => {
@@ -95,6 +97,10 @@ const Timer = ({ queue }) => {
         </button>
       )}
       {sessionFinished ? <button className="backToDash">Back To Dashboard</button> : <Fragment />}
+      <button className="showMetronome" onClick={() => setShowMetronome(!showMetronome)}>
+        {showMetronome ? "Hide Metronome" : "Show Metronome"}
+      </button>
+      {showMetronome && <Metronome />}
     </Fragment>
   );
 };
