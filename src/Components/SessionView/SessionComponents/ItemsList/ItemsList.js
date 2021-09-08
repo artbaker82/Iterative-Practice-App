@@ -8,7 +8,7 @@ const ItemsList = ({ list }) => {
         {list.items.map((item) => {
           return (
             <div key={item.id} className="itemWrapper">
-              <span>{`${item.title} - ${item.timer}:00 minutes`}</span>
+              <span>{`${item.title} - ${item.timer}:00`}</span>
             </div>
           );
         })}

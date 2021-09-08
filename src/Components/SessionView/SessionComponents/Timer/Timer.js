@@ -66,41 +66,43 @@ const Timer = ({ queue }) => {
 
   return (
     <Fragment>
-      <div className="timeDisplay">
-        <div className="displayCurrent">
-          {current ? `Currently Practicing: ${current.title}` : "Session Finished"}
+      <div className="timer-components-wrapper">
+        <div className="timeDisplay">
+          <div className="displayCurrent">
+            {current ? `Currently Practicing: ${current.title}` : "Session Finished"}
+          </div>
+          {/* display only seconds if minutes equals zero */}
+          {formatTime(timer).minutes > 0
+            ? `${formatTime(timer).minutes}:${formatTime(timer).seconds}`
+            : `${formatTime(timer).seconds}`}
         </div>
-        {/* display only seconds if minutes equals zero */}
-        {formatTime(timer).minutes > 0
-          ? `${formatTime(timer).minutes}:${formatTime(timer).seconds}`
-          : `${formatTime(timer).seconds}`}
-      </div>
 
-      {!isRunning ? (
-        <button
-          disabled={sessionFinished ? true : false}
-          onClick={() => {
-            setIsRunning(true);
-          }}
-          className="startButton"
-        >
-          Start Timer
+        {!isRunning ? (
+          <button
+            disabled={sessionFinished ? true : false}
+            onClick={() => {
+              setIsRunning(true);
+            }}
+            className="startButton"
+          >
+            Start Timer
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              setIsRunning(false);
+            }}
+            className="stopButton"
+          >
+            Stop Timer
+          </button>
+        )}
+        {sessionFinished ? <button className="backToDash">Back To Dashboard</button> : <Fragment />}
+        <button className="showMetronome" onClick={() => setShowMetronome(!showMetronome)}>
+          {showMetronome ? "Hide Metronome" : "Show Metronome"}
         </button>
-      ) : (
-        <button
-          onClick={() => {
-            setIsRunning(false);
-          }}
-          className="stopButton"
-        >
-          Stop Timer
-        </button>
-      )}
-      {sessionFinished ? <button className="backToDash">Back To Dashboard</button> : <Fragment />}
-      <button className="showMetronome" onClick={() => setShowMetronome(!showMetronome)}>
-        {showMetronome ? "Hide Metronome" : "Show Metronome"}
-      </button>
-      {showMetronome && <Metronome />}
+        {showMetronome && <Metronome />}
+      </div>
     </Fragment>
   );
 };

@@ -1,4 +1,9 @@
 .sessionViewWrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 100vh;
+  background-color: #e2e2e2;
+}
+
+.item-list-wrapper {
 }

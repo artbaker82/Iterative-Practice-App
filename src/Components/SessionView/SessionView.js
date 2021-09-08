@@ -16,8 +16,12 @@ const SessionView = () => {
   return (
     <Fragment>
       <div className="sessionViewWrapper">
-        <ItemsList list={list} />
-        <Timer queue={list.items} />
+        <div className="item-list-wrapper">
+          <ItemsList list={list} />
+        </div>
+        <div className="timer-components-wrapper">
+          <Timer queue={list.items} />
+        </div>
       </div>
     </Fragment>
   );
