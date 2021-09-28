@@ -7,6 +7,7 @@ export const PRACTICE_ITEMS = [
     lastPracticed: "2/3/19",
     selected: false,
     timer: 5,
+    current: false,
   },
   {
     title: "Desafinado",
@@ -16,5 +17,6 @@ export const PRACTICE_ITEMS = [
     lastPracticed: "2/3/19",
     selected: false,
     timer: 5,
+    current: false,
   },
 ];

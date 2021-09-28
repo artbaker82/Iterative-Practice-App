@@ -70,6 +70,7 @@ const AddList = ({ practiceItems, handleNewList, handleSelect }) => {
               {practiceItems.map((item) => {
                 return (
                   <div
+                    key={item.id}
                     onClick={() => handleSelect(item)}
                     className={`${
                       item.selected ? "add-list-item-wrapper-selected" : "add-list-item-wrapper"

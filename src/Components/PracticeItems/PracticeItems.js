@@ -23,7 +23,7 @@ const PracticeItems = ({ practiceItems, handleNewItem }) => {
       <h2>Practice Items</h2>
       <div>
         {practiceItems.map((item) => {
-          return <PracticeItem item={item} />;
+          return <PracticeItem key={item.id} item={item} />;
         })}
       </div>
 

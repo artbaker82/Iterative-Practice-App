@@ -11,7 +11,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
 } from "reactstrap";
 
 const AddNewItem = ({ handleNewItem }) => {
@@ -49,7 +48,7 @@ const AddNewItem = ({ handleNewItem }) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Add New Practice Item</ModalHeader>
         <ModalBody>
-          <Form onSubmit={(e) => handleNewItem(e, title)}>
+          <Form onSubmit={(e) => handleNewItem(title, e)}>
             <FormGroup>
               <Label htmlFor="username">Title</Label>
               <Input
